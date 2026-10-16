@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Note-Space
 
-## Getting Started
+**Note-Space** is a full-stack note-taking application built with Next.js that helps users create, manage, update, and organize their notes in one place. It also includes AI-powered features to make editing and improving notes easier.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🔐 **User Authentication** — Register and log in securely.
+- 🔑 **Google Login** — Sign in using a Google account.
+- 📝 **Create Notes** — Create and save personal notes.
+- 📚 **Manage Notes** — View and access saved notes anytime.
+- ✏️ **Update Notes** — Edit existing notes whenever needed.
+- 🤖 **AI-Powered Editing** — Get AI assistance to improve, rewrite, or update notes.
+- 💾 **Persistent Storage** — Save notes in a database for future access.
+- 📱 **Responsive Design** — Use the application across different screen sizes.
+
+## 🛠️ Tech Stack
+
+The following technologies are planned for this project:
+
+- **Frontend:** Next.js, React.js
+- **Language:** JavaScript
+- **Styling:** CSS / Tailwind CSS
+- **Backend:** Next.js Server Components, Server Actions, or API Routes, depending on the implementation
+- **Database:** To be selected
+- **Authentication:** Email/password and Google authentication
+- **AI Integration:** AI API
+- **Package Manager:** pnpm
+- **Version Control:** Git and GitHub
+
+*Update this section as the project implementation evolves.*
+
+## 📂 Project Structure
+
+The project structure may look like this as development progresses:
+
+```text
+note-space/
+├── public/
+├── src/
+│   ├── app/
+│   │   ├── layout.js
+│   │   ├── page.js
+│   │   └── globals.css
+│   ├── components/
+│   ├── lib/
+│   └── services/
+├── .env
+├── .gitignore
+├── package.json
+├── pnpm-lock.yaml
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Clone the repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone YOUR_REPOSITORY_URL
+```
 
-## Learn More
+### 2. Navigate to the project folder
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd note-space
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Install dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm install
+```
 
-## Deploy on Vercel
+### 4. Configure environment variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create a `.env` file in the root directory and add the environment variables required by your authentication provider, database, and AI service.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+DATABASE_URL=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+AI_API_KEY=
+```
+
+The variable names above are examples. Use the exact names required by the services and libraries selected for the project.
+
+**Important:** Never commit your `.env` file or expose secret API keys in frontend code.
+
+### 5. Start the development server
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📖 How It Works
+
+1. A user creates an account or signs in using Google.
+2. The user creates and saves notes.
+3. Saved notes can be viewed whenever needed.
+4. Notes can be edited and updated.
+5. AI assistance helps improve note content.
+6. Updated notes are saved for future access.
+
+## 🔒 Security
+
+- Protect private notes so users can access only their own data.
+- Validate user input on the server.
+- Store credentials and API keys securely in environment variables.
+- Use secure authentication and session management.
+
+## 🗺️ Future Improvements
+
+- [ ] Search and filter notes.
+- [ ] Categorize notes with tags.
+- [ ] Mark important notes as favorites.
+- [ ] Add a dark mode.
+- [ ] Add note-sharing functionality.
+- [ ] Improve AI-powered note suggestions.
+- [ ] Deploy the application online.
+
+## 👨‍💻 Developer
+
+**Rupesh Pradhan**
+
+- GitHub: https://github.com/merupeshpradhan
+- Portfolio: https://merupeshpradhan.vercel.app/
+- LinkedIn: https://www.linkedin.com/in/merupeshpradhan/
+
+## 📄 License
+
+This project is currently under development. A license can be added when the project is ready for public release.
