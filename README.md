@@ -56,9 +56,6 @@ note-space/
 ### 1. Clone the repository
 
 ```bash
-1. **Clone the repository**
-
-```bash
 git clone [https://github.com/merupeshpradhan/NoteFlow-AI.git](https://github.com/merupeshpradhan/NoteFlow-AI.git)
 ```
 
