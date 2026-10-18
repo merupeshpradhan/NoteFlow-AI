@@ -112,6 +112,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🗺️ Future Improvements
 
+- [ ] User Authentication (Register and Login).
+- [ ] Google Authentication.
 - [ ] Search and filter notes.
 - [ ] Categorize notes with tags.
 - [ ] Mark important notes as favorites.
