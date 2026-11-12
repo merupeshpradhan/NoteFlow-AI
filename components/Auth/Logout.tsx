@@ -1,38 +1,51 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import api from "../../Api/api.js";
+// import api from "../../Api/api.js";
 
-export default function SignOut() {
+interface LogoutProps {
+  className: string;
+}
+
+export default function SignOut({ className }: LogoutProps) {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   async function handleSignOut() {
     setLoading(true);
     const toastId = toast.loading("Logout...");
     try {
-      const res = await api.post(
-        "/users/logout",
-        {},
-        { withCredentials: true },
-      );
+      const res = await fetch("/users/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if(!res.ok){
+        throw new Error(data.message || "Something went wrong!")
+      }
 
       setLoading(false);
-      const successMsg = res.data?.message || "Logout successfully!";
+
       toast.update(toastId, {
-        render: successMsg,
+        render: data?.message || "Logout successfully!",
         type: "success",
         isLoading: false,
         autoClose: 3000,
       });
 
       localStorage.removeItem("user");
-      navigate("/");
-    } catch (error) {
+      router.push("/");
+    } catch (error:any) {
       console.log(error);
 
       setLoading(false);
-      const errorMsg = error?.response?.data?.message || "somting went wrong!";
+
+      const errorMsg = error.message || "somting went wrong!";
 
       toast.update(toastId, {
         render: errorMsg,

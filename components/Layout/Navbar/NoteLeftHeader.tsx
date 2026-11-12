@@ -6,18 +6,40 @@ import {
   FaFilm,
   FaTimes,
 } from "react-icons/fa";
-import SignOut from "../../Auth/SignOut.jsx";
-import { useLocation, useNavigate } from "react-router-dom";
+import Logout from "@/components/Auth/Logout";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
-function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
-  const navigate = useNavigate();
-  const location = useLocation();
+interface UserProfile {
+  name: string;
+  email: string;
+  avtar: string;
+}
 
-  const currentPath = location.pathname;
+interface noteLeftHeaderProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onGoToAllNotes: () => void;
+  onSelectContent: () => void;
+}
 
-  const [user, setUser] = useState({ name: "", email: "" });
+function NoteLeftHeader({
+  isOpen,
+  onClose,
+  onGoToAllNotes,
+  onSelectContent,
+}: noteLeftHeaderProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const currentPath = pathname;
+
+  const [user, setUser] = useState<{
+    name: string;
+    email: string;
+    avatar?: string;
+  }>({ name: "", email: "" });
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -27,15 +49,15 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
       } catch (e) {
         setUser({ name: "User", email: "" });
 
-        toast.update(toastId, {
-          render: "Please signIn again to access your notes.",
-          type: "error",
-          isLoading: false,
-          autoClose: 3000,
-        });
+        // toast.update(toastId, {
+        //   render: "Please signIn again to access your notes.",
+        //   type: "error",
+        //   isLoading: false,
+        //   autoClose: 3000,
+        // });
 
-        console.log(error);
-        navigate("/");
+        // console.log(error);
+        router.push("/");
       }
     }
   }, []);
@@ -63,7 +85,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
                 onGoToAllNotes();
-                navigate("/notes");
+                router.push("/notes");
               }}
               // onClick={navigate}
               className="flex items-center gap-2.5 cursor-pointer"
@@ -121,7 +143,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
               <button
                 onClick={() => {
                   onClose();
-                  navigate("/notes");
+                  router.push("/notes");
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors cursor-pointer ${
                   currentPath === "/notes" || currentPath === "/notes/all"
@@ -134,7 +156,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
               </button>
               <button
                 onClick={() => {
-                  navigate("/notes/favorites");
+                  router.push("/notes/favorites");
                   onClose();
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors cursor-pointer ${
@@ -155,7 +177,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
               </p>
               <button
                 onClick={() => {
-                  navigate("/notes/study");
+                  router.push("/notes/study");
                   onClose();
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors cursor-pointer ${
@@ -169,7 +191,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
               </button>
               <button
                 onClick={() => {
-                  navigate("/notes/marketing");
+                  router.push("/notes/marketing");
                   onClose();
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors cursor-pointer ${
@@ -183,7 +205,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
               </button>
               <button
                 onClick={() => {
-                  navigate("/notes/movies");
+                  router.push("/notes/movies");
                   onClose();
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors cursor-pointer ${
@@ -203,7 +225,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
         <div className="p-4 border-t border-slate-800/80 bg-slate-950/30">
           <button
             onClick={() => {
-              navigate("/notes/profile");
+              router.push("/notes/profile");
               onClose();
             }}
             className="flex items-center gap-3 mb-3 px-2 cursor-pointer w-full text-left"
@@ -227,7 +249,7 @@ function NoteLeftHeader({ isOpen, onClose, onGoToAllNotes, onSelectContent }) {
           </button>
 
           <div className="grid gap-2">
-            <SignOut className="w-full border border-slate-800 rounded-xl py-2 text-xs font-semibold bg-slate-900 text-slate-300 hover:bg-rose-500/10 hover:text-rose-400 hover:border-rose-500/30 transition-all cursor-pointer shadow-sm" />
+            <Logout className="w-full border border-slate-800 rounded-xl py-2 text-xs font-semibold bg-slate-900 text-slate-300 hover:bg-rose-500/10 hover:text-rose-400 hover:border-rose-500/30 transition-all cursor-pointer shadow-sm" />
           </div>
         </div>
       </aside>
